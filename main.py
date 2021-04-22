@@ -16,9 +16,12 @@ from recipeGenerator import listOfRecipe
 
 app = Flask(__name__)
 
+#expects a json POST request
 @app.route('/',methods = ['POST'])
 def api_root():
   if request.headers['Content-Type'] =='application/json':
+
+    #returns a list of ingredients in JSON format
     ingredients = request.json 
 
     return jsonify(listOfRecipe(ingredients['ingredients']))
