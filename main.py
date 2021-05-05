@@ -19,13 +19,17 @@ app = Flask(__name__)
 #expects a json POST request
 @app.route('/',methods = ['POST'])
 def api_root():
+  #The API is expecting a head that contains a "Content-Type" == "application/json"
   if request.headers['Content-Type'] =='application/json':
 
     #returns a list of ingredients in JSON format
     ingredients = request.json 
 
+    #This will return a json object of all the ingredients the reciepe geneerated
     return jsonify(listOfRecipe(ingredients['ingredients']))
   
+
+#This Start the Flask Application
 if __name__ == '__main__':
   app.run()
 
